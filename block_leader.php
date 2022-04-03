@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
     }
 
     if ($get_checked == "open") {
-// By  Adedokun Adewale Azeez 14th August 2019
+        // By  Adedokun Adewale Azeez 14th August 2021
         $username = mysqli_real_escape_string($connect, $_POST['username']);
         $password1 = mysqli_real_escape_string($connect, $_POST['password']);
         $password = md5($password1);

@@ -28,7 +28,7 @@ function fn_resize($image_resource_id, $width, $height)
 
 if (isset($_POST['Submit'])) {
 
-    // By  Adedokun Adewale Azeez 16th November 2019
+    // By  Adedokun Adewale Azeez 16th November 2021
     // description: Escaping or evading malicious attack or threat for unscropulous users
     // <script>alert('You have been hacked')</script>
     $name1 = mysqli_real_escape_string($connect, strip_tags(str_replace("'", "", $_POST['name'])));
@@ -496,8 +496,7 @@ if (isset($_POST['Submit'])) {
                                                     </div>
                                                     <div class="card-block">
                                                         <!--<h4 class="sub-title">Basic Inputs</h4>-->
-                                                        <form action="" method="POST"
-                                                            enctype="multipart/form-data">
+                                                        <form action="" method="POST" enctype="multipart/form-data">
                                                             <center>
                                                                 <div class="row">
                                                                     <div class="col-sm-6">
@@ -634,7 +633,8 @@ if (isset($_POST['Submit'])) {
                                                             <div class="row">
                                                                 <div class="col-sm-2"></div>
                                                                 <div class="col-sm-10">
-                                                                    <h5 style="text-decoration: underline;">ACCOMMODATION
+                                                                    <h5 style="text-decoration: underline;">
+                                                                        ACCOMMODATION
                                                                         INFORMATION</h5>
                                                                 </div>
                                                             </div>

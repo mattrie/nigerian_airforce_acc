@@ -6,7 +6,7 @@ include 'connection.php';
 
 //   include 'connection.php';
 if (isset($_POST['submit'])) {
-    // By  Adedokun Adewale Azeez 30th September 2019
+    // By  Adedokun Adewale Azeez 30th September 2021
     $username = mysqli_real_escape_string($connect, $_POST['username']);
     $password1 = mysqli_real_escape_string($connect, $_POST['password']);
     $password = md5($password1);
@@ -159,7 +159,8 @@ if (isset($_POST['submit'])) {
 
                     <form class="md-float-material form-material" action="" method="POST">
                         <div class="text-center">
-                            <i>_ <a href="index.php"><b style="font-weight: bolder; font-size: 24px; color: #ccffcc;">SEAFB
+                            <i>_ <a href="index.php"><b
+                                        style="font-weight: bolder; font-size: 24px; color: #ccffcc;">SEAFB
                                         (RDCSAC)</b></a>_</i>
                         </div>
                         <div class="auth-box card">

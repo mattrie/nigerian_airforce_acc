@@ -167,15 +167,14 @@ include 'connection.php';
                                 <div class="page-wrapper">
                                     <!-- Page-body start -->
                                     <div class="page-body">
-                                        <form  action="" method="POST"
-                                            enctype="multipart/form-data">
+                                        <form action="" method="POST" enctype="multipart/form-data">
                                             <div class="row">
 
                                                 <div class="col-sm-3">
                                                     <center>
                                                         <label class="float-left">Block:</label>
-                                                        <input type="text" id="autocomplete" name="block" class="form-control"
-                                                            autocomplete="off" required>
+                                                        <input type="text" id="autocomplete" name="block"
+                                                            class="form-control" autocomplete="off" required>
                                                     </center>
 
                                                 </div>
@@ -188,8 +187,8 @@ include 'connection.php';
                                                     </center>
                                                 </div>
 
-                                                    <input type="hidden" name="room" value="">
-                                               
+                                                <input type="hidden" name="room" value="">
+
 
 
 
@@ -217,147 +216,147 @@ include 'connection.php';
                                         //loop through all table rows
                                         $inc = 1;
 
-                                    if(isset($_POST['btnsrch'])){
-                                        // By  Adedokun Adewale Azeez 3rd October 2019
-                                        $block = mysqli_real_escape_string($connect, strip_tags(str_replace("'", "", $_POST['block'])));
-                                        $flat_no = mysqli_real_escape_string($connect, strip_tags(str_replace("'", "", $_POST['flat_no'])));
-                                        $room = mysqli_real_escape_string($connect, strip_tags(str_replace("'", "", $_POST['room'])));
-                                        
-                                        if ($flat_no == '') {
-                                            $count_all = mysqli_query($connect, "SELECT COUNT(id) as count_all FROM  accomodation_history WHERE block = '$block'");
+                                        if (isset($_POST['btnsrch'])) {
+                                            // By  Adedokun Adewale Azeez 3rd October 2021
+                                            $block = mysqli_real_escape_string($connect, strip_tags(str_replace("'", "", $_POST['block'])));
+                                            $flat_no = mysqli_real_escape_string($connect, strip_tags(str_replace("'", "", $_POST['flat_no'])));
+                                            $room = mysqli_real_escape_string($connect, strip_tags(str_replace("'", "", $_POST['room'])));
+
+                                            if ($flat_no == '') {
+                                                $count_all = mysqli_query($connect, "SELECT COUNT(id) as count_all FROM  accomodation_history WHERE block = '$block'");
+                                                while ($row = mysqli_fetch_array($count_all)) {
+                                                    $everbody = $row['count_all'];
+                                                }
+                                                $result = mysqli_query($connect, "SELECT * FROM  accomodation_history WHERE block = '$block'  ORDER BY id DESC");
+
+
+
+
+                                            } else if ($flat_no != '') {
+                                                $count_all = mysqli_query($connect, "SELECT COUNT(id) as count_all FROM  accomodation_history WHERE block = '$block' AND flat_no = '$flat_no' ");
+                                                while ($row = mysqli_fetch_array($count_all)) {
+                                                    $everbody = $row['count_all'];
+                                                }
+                                                $result = mysqli_query($connect, "SELECT * FROM  accomodation_history WHERE block = '$block' AND flat_no = '$flat_no'  ORDER BY id DESC");
+
+                                            }
+
+
+
+                                            echo '<input type="hidden" id="get_table_name" value=" ACCOMODATION HISTORY: [' . $everbody . '] "';
+                                            echo ' <div class="card">';
+                                            echo '<div class="card-block table-border-style">';
+
+                                            echo '<div class="table-responsive" >';
+                                            echo '<CAPTION><h3 align="center" style="font-size:20px; color:black;" >ACCOMODATION HISTORY: ' . $everbody . '</h3></CAPTION>';
+                                            echo '<table class="table table-bordered table-striped   table-hover " id="myTable">';
+
+                                            echo ' <thead class="thead-dark">';
+                                            echo '<tr align = "center">';
+                                            echo '<th>S/N</th>';
+                                            echo '<th>Name</th>';
+                                            echo '<th>SVN</th>';
+                                            echo '<th>Block</th>';
+                                            echo '<th>Flat No</th>';
+                                            // echo '<th>Room</th>';
+                                            echo '<th>Accomodation Type</th>';
+                                            echo '<th>From</th>';
+                                            echo '<th>To</th>';
+                                            echo '</tr>';
+                                            echo '</thead>';
+
+                                            echo '<tbody class="" style="font-family: sans-serif; color:black ; font-weight:bold;">';
+                                            while ($row = mysqli_fetch_array($result)) {
+                                                echo "<tr align = 'center'>";
+                                                echo "<td>" . $inc . "</td>";
+                                                echo "<td>" . $row['name'] . "</td>";
+                                                echo "<td>" . $row['svn'] . "</td>";
+                                                echo "<td>" . $row['block'] . "</td>";
+                                                echo "<td>" . $row['flat_no'] . "</td>";
+                                                // echo "<td>" . $row['room'] . "</td>";
+                                                echo "<td>" . $row['accn_type'] . "</td>";
+                                                echo "<td>" . date("jS M Y", strtotime($row['date_alloted'])) . "</td>";
+                                                echo "<td>" . date("jS M Y", strtotime($row['date_exited'])) . "</td>";
+                                                echo "</tr>";
+                                                $inc++;
+                                            }
+
+
+
+
+
+                                            echo ' </tbody>';
+                                            echo ' </table>';
+
+                                            echo '</div>';
+                                            echo '</div>';
+                                            echo '</div>';
+
+
+
+
+                                        } else {
+
+
+                                            $count_all = mysqli_query($connect, "SELECT COUNT(id) as count_all FROM  accomodation_history");
                                             while ($row = mysqli_fetch_array($count_all)) {
                                                 $everbody = $row['count_all'];
                                             }
-                                            $result = mysqli_query($connect, "SELECT * FROM  accomodation_history WHERE block = '$block'  ORDER BY id DESC");
-                                       
+                                            $result = mysqli_query($connect, "SELECT * FROM  accomodation_history  ORDER BY id DESC");
 
 
 
-                                        } else if ($flat_no != '' ){
-                                            $count_all = mysqli_query($connect, "SELECT COUNT(id) as count_all FROM  accomodation_history WHERE block = '$block' AND flat_no = '$flat_no' ");
-                                            while ($row = mysqli_fetch_array($count_all)) {
-                                                $everbody = $row['count_all'];
+
+                                            echo '<input type="hidden" id="get_table_name" value=" ACCOMODATION HISTORY: [' . $everbody . '] "';
+                                            echo ' <div class="card">';
+                                            echo '<div class="card-block table-border-style">';
+
+                                            echo '<div class="table-responsive" >';
+                                            echo '<CAPTION><h3 align="center" style="font-size:20px; color:black;" >ACCOMODATION HISTORY: ' . $everbody . '</h3></CAPTION>';
+                                            echo '<table class="table table-bordered table-striped   table-hover " id="myTable">';
+
+                                            echo ' <thead class="thead-dark">';
+                                            echo '<tr align = "center">';
+                                            echo '<th>S/N</th>';
+                                            echo '<th>Name</th>';
+                                            echo '<th>SVN</th>';
+                                            echo '<th>Block</th>';
+                                            echo '<th>Flat No</th>';
+                                            // echo '<th>Room</th>';
+                                            echo '<th>Accomodation Type</th>';
+                                            echo '<th>From</th>';
+                                            echo '<th>To</th>';
+                                            echo '</tr>';
+                                            echo '</thead>';
+
+                                            echo '<tbody class="" style="font-family: sans-serif; color:black ; font-weight:bold;">';
+                                            while ($row = mysqli_fetch_array($result)) {
+                                                echo "<tr align = 'center'>";
+                                                echo "<td>" . $inc . "</td>";
+                                                echo "<td>" . $row['name'] . "</td>";
+                                                echo "<td>" . $row['svn'] . "</td>";
+                                                echo "<td>" . $row['block'] . "</td>";
+                                                echo "<td>" . $row['flat_no'] . "</td>";
+                                                // echo "<td>" . $row['room'] . "</td>";
+                                                echo "<td>" . $row['accn_type'] . "</td>";
+                                                echo "<td>" . date("jS M Y", strtotime($row['date_alloted'])) . "</td>";
+                                                echo "<td>" . date("jS M Y", strtotime($row['date_exited'])) . "</td>";
+                                                echo "</tr>";
+                                                $inc++;
                                             }
-                                            $result = mysqli_query($connect, "SELECT * FROM  accomodation_history WHERE block = '$block' AND flat_no = '$flat_no'  ORDER BY id DESC");
-                                       
+
+
+
+
+
+                                            echo ' </tbody>';
+                                            echo ' </table>';
+
+                                            echo '</div>';
+                                            echo '</div>';
+                                            echo '</div>';
+
                                         }
-                                        
-
-
-                                        echo '<input type="hidden" id="get_table_name" value=" ACCOMODATION HISTORY: [' . $everbody . '] "';
-                                        echo ' <div class="card">';
-                                        echo '<div class="card-block table-border-style">';
-
-                                        echo '<div class="table-responsive" >';
-                                        echo '<CAPTION><h3 align="center" style="font-size:20px; color:black;" >ACCOMODATION HISTORY: ' . $everbody . '</h3></CAPTION>';
-                                        echo '<table class="table table-bordered table-striped   table-hover " id="myTable">';
-
-                                        echo ' <thead class="thead-dark">';
-                                        echo '<tr align = "center">';
-                                        echo '<th>S/N</th>';
-                                        echo '<th>Name</th>';
-                                        echo '<th>SVN</th>';
-                                        echo '<th>Block</th>';
-                                        echo '<th>Flat No</th>';
-                                        // echo '<th>Room</th>';
-                                        echo '<th>Accomodation Type</th>';
-                                        echo '<th>From</th>';
-                                        echo '<th>To</th>';
-                                        echo '</tr>';
-                                        echo '</thead>';
-
-                                        echo '<tbody class="" style="font-family: sans-serif; color:black ; font-weight:bold;">';
-                                        while ($row = mysqli_fetch_array($result)) {
-                                            echo "<tr align = 'center'>";
-                                            echo "<td>" . $inc . "</td>";
-                                            echo "<td>" . $row['name'] . "</td>";
-                                            echo "<td>" . $row['svn'] . "</td>";
-                                            echo "<td>" . $row['block'] . "</td>";
-                                            echo "<td>" . $row['flat_no'] . "</td>";
-                                            // echo "<td>" . $row['room'] . "</td>";
-                                            echo "<td>" . $row['accn_type'] . "</td>";
-                                            echo "<td>" . date("jS M Y", strtotime($row['date_alloted']))  . "</td>";
-                                            echo "<td>" . date("jS M Y", strtotime($row['date_exited']))  . "</td>";
-                                            echo "</tr>";
-                                            $inc++;
-                                        }
-
-
-
-
-
-                                        echo ' </tbody>';
-                                        echo ' </table>';
-
-                                        echo '</div>';
-                                        echo '</div>';
-                                        echo '</div>';
-
-
-
-
-                                    } else {
-
-
-                                        $count_all = mysqli_query($connect, "SELECT COUNT(id) as count_all FROM  accomodation_history");
-                                        while ($row = mysqli_fetch_array($count_all)) {
-                                            $everbody = $row['count_all'];
-                                        }
-                                        $result = mysqli_query($connect, "SELECT * FROM  accomodation_history  ORDER BY id DESC");
-
-
-
-
-                                        echo '<input type="hidden" id="get_table_name" value=" ACCOMODATION HISTORY: [' . $everbody . '] "';
-                                        echo ' <div class="card">';
-                                        echo '<div class="card-block table-border-style">';
-
-                                        echo '<div class="table-responsive" >';
-                                        echo '<CAPTION><h3 align="center" style="font-size:20px; color:black;" >ACCOMODATION HISTORY: ' . $everbody . '</h3></CAPTION>';
-                                        echo '<table class="table table-bordered table-striped   table-hover " id="myTable">';
-
-                                        echo ' <thead class="thead-dark">';
-                                        echo '<tr align = "center">';
-                                        echo '<th>S/N</th>';
-                                        echo '<th>Name</th>';
-                                        echo '<th>SVN</th>';
-                                        echo '<th>Block</th>';
-                                        echo '<th>Flat No</th>';
-                                        // echo '<th>Room</th>';
-                                        echo '<th>Accomodation Type</th>';
-                                        echo '<th>From</th>';
-                                        echo '<th>To</th>';
-                                        echo '</tr>';
-                                        echo '</thead>';
-
-                                        echo '<tbody class="" style="font-family: sans-serif; color:black ; font-weight:bold;">';
-                                        while ($row = mysqli_fetch_array($result)) {
-                                            echo "<tr align = 'center'>";
-                                            echo "<td>" . $inc . "</td>";
-                                            echo "<td>" . $row['name'] . "</td>";
-                                            echo "<td>" . $row['svn'] . "</td>";
-                                            echo "<td>" . $row['block'] . "</td>";
-                                            echo "<td>" . $row['flat_no'] . "</td>";
-                                            // echo "<td>" . $row['room'] . "</td>";
-                                            echo "<td>" . $row['accn_type'] . "</td>";
-                                            echo "<td>" . date("jS M Y", strtotime($row['date_alloted']))  . "</td>";
-                                            echo "<td>" . date("jS M Y", strtotime($row['date_exited']))  . "</td>";
-                                            echo "</tr>";
-                                            $inc++;
-                                        }
-
-
-
-
-
-                                        echo ' </tbody>';
-                                        echo ' </table>';
-
-                                        echo '</div>';
-                                        echo '</div>';
-                                        echo '</div>';
-
-                                    }        
                                         ?>
 
                                         <br>

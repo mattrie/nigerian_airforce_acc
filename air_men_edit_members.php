@@ -27,7 +27,7 @@ function fn_resize($image_resource_id, $width, $height)
 
 
 if (isset($_POST['Submit'])) {
-// By  Adedokun Adewale Azeez  20th July 2019
+// By  Adedokun Adewale Azeez  20th July 2021
     $id = $_POST['idd'];
     $name1 = mysqli_real_escape_string($connect, strip_tags(str_replace("'", "", $_POST['name'])));
 

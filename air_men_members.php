@@ -27,7 +27,7 @@ function fn_resize($image_resource_id, $width, $height)
 
 
 if (isset($_POST['Submit'])) {
-// By  Adedokun Adewale Azeez  5th August 2019
+    // By  Adedokun Adewale Azeez  5th August 2021
     $name1 = mysqli_real_escape_string($connect, strip_tags(str_replace("'", "", $_POST['name'])));
 
     $name = mysqli_real_escape_string($connect, strip_tags(str_replace("'", "", strtoupper($name1))));
@@ -490,8 +490,7 @@ if (isset($_POST['Submit'])) {
                                                     </div>
                                                     <div class="card-block">
                                                         <!--<h4 class="sub-title">Basic Inputs</h4>-->
-                                                        <form action="" method="POST"
-                                                            enctype="multipart/form-data">
+                                                        <form action="" method="POST" enctype="multipart/form-data">
                                                             <center>
                                                                 <div class="row">
                                                                     <div class="col-sm-6">
