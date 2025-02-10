@@ -1,0 +1,10 @@
+2021-12-09T14:33:22.171Z Error: Unexpected arguments: --NG-234, DE
+2021-12-09T14:33:22.191Z See more help with --help
+2021-12-09T14:33:22.191Z     at validateArgs (C:/Users/Matt/AppData/Roaming/npm/node_modules/twilio-cli/node_modules/@oclif/parser/lib/validate.js:10:19)
+2021-12-09T14:33:22.191Z     at Object.validate (C:/Users/Matt/AppData/Roaming/npm/node_modules/twilio-cli/node_modules/@oclif/parser/lib/validate.js:79:5)
+2021-12-09T14:33:22.191Z     at Object.parse (C:/Users/Matt/AppData/Roaming/npm/node_modules/twilio-cli/node_modules/@oclif/parser/lib/index.js:28:7)
+2021-12-09T14:33:22.191Z     at NewCommandClass.parse (C:/Users/Matt/AppData/Roaming/npm/node_modules/twilio-cli/node_modules/@oclif/command/lib/command.js:86:41)
+2021-12-09T14:33:22.191Z     at NewCommandClass.run (C:/Users/Matt/AppData/Roaming/npm/node_modules/twilio-cli/node_modules/@twilio/cli-core/src/base-commands/base-command.js:35:34)
+2021-12-09T14:33:22.191Z     at NewCommandClass.run (C:/Users/Matt/AppData/Roaming/npm/node_modules/twilio-cli/node_modules/@twilio/cli-core/src/base-commands/twilio-client-command.js:25:17)
+2021-12-09T14:33:22.191Z     at NewCommandClass.run (C:/Users/Matt/AppData/Roaming/npm/node_modules/twilio-cli/src/hooks/init/buy-phone-number.js:42:21)
+2021-12-09T14:33:22.191Z     at NewCommandClass._run (C:/Users/Matt/AppData/Roaming/npm/node_modules/twilio-cli/node_modules/@oclif/command/lib/command.js:43:31)
